@@ -58,12 +58,17 @@ mod tests {
     }
 
     #[test]
+    fn test_read_string_from_file() {
+        common::read_string_from_file("reader.txt").unwrap();
+    }
+
+    #[test]
     fn temp_test() {
         let v = vec![1, 2, 3];
 
         let a = v[0];
         let b = v[1];
-        let c = v[3];
+        let c = v[2];
         println!("{}", a);
         println!("{}", b);
         println!("{}", c);
