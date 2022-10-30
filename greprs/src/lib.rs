@@ -33,7 +33,7 @@ impl Config {
 
     pub fn new(args: &[String]) -> Config {
         Self::_new(&args).unwrap_or_else(|err| {
-            println!("Problem parsing arguments: {}", err);
+            eprintln!("Problem parsing arguments: {}", err);
             process::exit(1);
         })
     }
@@ -44,7 +44,7 @@ pub fn run(config: Config) {
     println!("In file {}", config.filename);
     
     if let Err(e) = &self::_run(config) {
-        println!("Application error: {}", e);
+        eprintln!("Application error: {}", e);
         process::exit(1);
     }
 }
