@@ -1,4 +1,6 @@
 extern crate greprs;
+mod counter;
+use counter::Counter;
 
 use std::{time::Duration, thread};
 
@@ -38,6 +40,19 @@ fn main() {
     // let args: Vec<String> = args().collect();
     // let config = Config::new(&args);
     // greprs::run(config);
+
+    let sum: u32 = Counter::new().zip(Counter::new().skip(1))
+        .map(|(a, b)| a * b)
+        .filter(|x| (x % 3) == 0)
+        .sum();
+
+        // for i in Counter::new().zip(Counter::new().skip(1))
+        // .map(|(a, b)| a * b)
+        // .filter(|x| (x % 3) == 0) {
+        //     println!("{:?}", i);
+        // }
+
+        println!("{}", sum);
 }
 
 fn generate_workout(intensity: u32, random_number: u32) {

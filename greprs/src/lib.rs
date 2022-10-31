@@ -145,4 +145,34 @@ Pick three.";
             assert!(false, "The error was occurred: {:?}", err);
         }
     }
+
+    #[derive(PartialEq, Debug)]
+    struct Shoe {
+        size: u32,
+        style: String
+    }
+
+    fn shoe_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+        shoes.into_iter()
+            .filter(|x| x.size == shoe_size)
+            .collect()
+    }
+
+    #[test]
+    fn filter_by_size() {
+        let shoes = vec![
+            Shoe {size: 10, style: "sneaker".to_string()},
+            Shoe {size: 13, style: "sandal".to_string()},
+            Shoe {size: 10, style: "boot".to_string()},
+        ];
+
+        let in_my_size = shoe_in_my_size(shoes, 10);
+
+        assert_eq!(in_my_size,
+            vec![
+                Shoe {size: 10, style: "sneaker".to_string()},
+                Shoe {size: 10, style: "boot".to_string()}
+            ]
+        );
+    }
 }
